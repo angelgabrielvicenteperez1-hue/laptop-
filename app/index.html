@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laptop Instructor - Angel Gabriel</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <header>
+                <h1><i class="fas fa-laptop-code"></i> Laptop Instructor</h1>
+                <h2>Angel Gabriel Vicente Pérez</h2>
+            </header>
+            
+            <section class="welcome">
+                <h3><i class="fas fa-hand-wave"></i> ¡Bienvenido!</h3>
+                <p>Sistema de diagnóstico y reparación técnica</p>
+            </section>
+            
+            <section class="technician">
+                <p><strong><i class="fas fa-user-tie"></i> Técnico:</strong> Angel Gabriel Vicente Pérez</p>
+                <p><strong><i class="fas fa-phone"></i> Contacto:</strong> <span id="phone-number">784 106 8386</span></p>
+            </section>
+            
+            <hr>
+            
+            <div class="button-grid">
+                <button class="btn" id="diagnostico">
+                    <i class="fas fa-search"></i> Diagnóstico
+                </button>
+                <button class="btn" id="registrar">
+                    <i class="fas fa-plus-circle"></i> Registrar Equipo
+                </button>
+                <button class="btn" id="historial">
+                    <i class="fas fa-history"></i> Historial
+                </button>
+                <button class="btn" id="asistente">
+                    <i class="fas fa-robot"></i> Asistente IA
+                </button>
+                <button class="btn" id="contacto">
+                    <i class="fas fa-headset"></i> Contacto
+                </button>
+                <button class="btn" id="configuracion">
+                    <i class="fas fa-cog"></i> Configuración
+                </button>
+            </div>
+            
+            <h3 class="section-title"><i class="fas fa-bolt"></i> Acciones Rápidas</h3>
+            
+            <div class="quick-actions">
+                <button class="btn-action" id="llamar">
+                    <i class="fas fa-phone"></i> Llamar ahora
+                </button>
+                <a class="btn-action" id="whatsapp-btn" target="_blank">
+                    <i class="fab fa-whatsapp"></i> WhatsApp
+                </a>
+                <button class="btn-action" id="ayuda">
+                    <i class="fas fa-life-ring"></i> Ayuda rápida (SMS)
+                </button>
+            </div>
+            
+            <section class="stats">
+                <h3><i class="fas fa-chart-bar"></i> Estadísticas</h3>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <span class="stat-value" id="reparaciones-hoy">0</span>
+                        <span class="stat-label">Reparaciones hoy</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value" id="satisfaccion">98%</span>
+                        <span class="stat-label">Satisfacción</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value" id="tiempo-promedio">45 min</span>
+                        <span class="stat-label">Tiempo promedio</span>
+                    </div>
+                </div>
+            </section>
+            
+            <footer>
+                <p>© 2023 Laptop Instructor - Angel Gabriel Vicente Pérez</p>
+                <p class="version">v2.0 - Funcional</p>
+            </footer>
+        </div>
+        
+        <!-- MODAL CHATBOT -->
+        <div class="modal" id="chatbot-modal">
+            <div class="modal-content chatbot-content">
+                <span class="close-modal" data-modal="chatbot-modal">&times;</span>
+                <h3><i class="fas fa-robot"></i> Asistente IA Técnico</h3>
+                <div class="chat-container">
+                    <div class="chat-messages" id="chat-messages">
+                        <div class="message bot">
+                            <strong>Asistente:</strong> ¡Hola! Soy tu asistente técnico. Puedo ayudarte con:
+                            <br>• Diagnóstico de problemas
+                            <br>• Soluciones para laptops
+                            <br>• Consejos de mantenimiento
+                            <br><br>¿En qué puedo ayudarte?
+                        </div>
+                    </div>
+                    <div class="chat-input">
+                        <input type="text" id="user-input" placeholder="Escribe tu pregunta técnica...">
+                        <button id="send-btn"><i class="fas fa-paper-plane"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- MODAL REGISTRAR EQUIPO -->
+        <div class="modal" id="registro-modal">
+            <div class="modal-content">
+                <span class="close-modal" data-modal="registro-modal">&times;</span>
+                <h3><i class="fas fa-laptop"></i> Registrar Nueva Laptop</h3>
+                <form id="registro-form">
+                    <div class="form-group">
+                        <label>Nombre del cliente:</label>
+                        <input type="text" id="cliente" required placeholder="Ej: Juan Pérez">
+                    </div>
+                    <div class="form-group">
+                        <label>Marca:</label>
+                        <select id="marca" required>
+                            <option value="">Selecciona marca</option>
+                            <option value="Dell">Dell</option>
+                            <option value="HP">HP</option>
+                            <option value="Lenovo">Lenovo</option>
+                            <option value="Asus">Asus</option>
+                            <option value="Acer">Acer</option>
+                            <option value="Apple">Apple</option>
+                            <option value="Otro">Otro</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Modelo:</label>
+                        <input type="text" id="modelo" required placeholder="Ej: Inspiron 15 3000">
+                    </div>
+                    <div class="form-group">
+                        <label>Problema reportado:</label>
+                        <textarea id="problema" rows="3" required placeholder="Describe el problema..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Prioridad:</label>
+                        <div class="priority-buttons">
+                            <button type="button" class="priority-btn" data-priority="baja">Baja</button>
+                            <button type="button" class="priority-btn" data-priority="media">Media</button>
+                            <button type="button" class="priority-btn active" data-priority="alta">Alta</button>
+                        </div>
+                        <input type="hidden" id="prioridad" value="alta">
+                    </div>
+                    <button type="submit" class="submit-btn">
+                        <i class="fas fa-search"></i> Analizar y Registrar
+                    </button>
+                </form>
+                <div id="analisis-resultado" class="analisis-resultado"></div>
+            </div>
+        </div>
+        
+        <!-- MODAL CONFIGURACIÓN -->
+        <div class="modal" id="config-modal">
+            <div class="modal-content">
+                <span class="close-modal" data-modal="config-modal">&times;</span>
+                <h3><i class="fas fa-cog"></i> Configuración</h3>
+                
+                <div class="config-item">
+                    <label class="switch">
+                        <input type="checkbox" id="notificaciones" checked>
+                        <span class="slider"></span>
+                    </label>
+                    <span>Notificaciones por correo</span>
+                </div>
+                
+                <div class="config-item">
+                    <label class="switch">
+                        <input type="checkbox" id="sonido">
+                        <span class="slider"></span>
+                    </label>
+                    <span>Sonidos de alerta</span>
+                </div>
+                
+                <div class="config-item">
+                    <label>Idioma:</label>
+                    <select id="idioma">
+                        <option value="es" selected>Español</option>
+                        <option value="en">Inglés</option>
+                        <option value="pt">Portugués</option>
+                    </select>
+                </div>
+                
+                <div class="config-item">
+                    <label>Tema:</label>
+                    <div class="theme-buttons">
+                        <button class="theme-btn" data-theme="azul">Azul</button>
+                        <button class="theme-btn" data-theme="oscuro">Oscuro</button>
+                        <button class="theme-btn" data-theme="claro">Claro</button>
+                    </div>
+                </div>
+                
+                <div class="config-item">
+                    <label>Reportes automáticos:</label>
+                    <select id="reportes">
+                        <option value="diario">Diario</option>
+                        <option value="semanal" selected>Semanal</option>
+                        <option value="mensual">Mensual</option>
+                    </select>
+                </div>
+                
+                <button class="save-btn" id="guardar-config">
+                    <i class="fas fa-save"></i> Guardar Configuración
+                </button>
+            </div>
+        </div>
+        
+        <!-- MODAL DIAGNÓSTICO -->
+        <div class="modal" id="diagnostico-modal">
+            <div class="modal-content">
+                <span class="close-modal" data-modal="diagnostico-modal">&times;</span>
+                <h3><i class="fas fa-search"></i> Diagnóstico del Sistema</h3>
+                <div id="diagnostico-progress">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progress-fill">0%</div>
+                    </div>
+                    <p id="diagnostico-status">Iniciando análisis...</p>
+                </div>
+                <div id="diagnostico-resultados" class="diagnostico-resultados"></div>
+                <button class="btn-action" id="iniciar-diagnostico">
+                    <i class="fas fa-play"></i> Iniciar Diagnóstico
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
